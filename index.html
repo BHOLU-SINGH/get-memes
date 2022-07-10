@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Funny Memes | Free Projects1</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="In this project, we will get a funny joke image every time when we'll click on Next button.">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <img src="" class="img" alt="loading...">
+        <button type="button" class="btn" onclick="getMeme()">Next</button>
+    </div>
+
+    <script>
+        const mainWin = document.querySelector(".main");
+        const img = document.querySelector(".img");
+        getMeme();
+
+        function getMeme() {
+            fetch("https://meme-api.herokuapp.com/gimme")
+            .then((res) =>{
+                console.log(res);
+                return res.json();
+            })
+            .then((result) =>{
+                console.log(result.url);
+                loader()
+                setTimeout(() =>{
+                    img.setAttribute("src", result.url);
+                }, 1000);
+            });
+        }
+        function loader() {
+            // var url = "loading.gif";
+            var url = "";
+            img.setAttribute("src", url);
+        }
+        
+    </script>
+</body>
+</html>
